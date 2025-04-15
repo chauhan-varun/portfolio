@@ -178,7 +178,7 @@ export default function Hero() {
                     variants={letterVariants}
                     initial="initial"
                     animate="wave"
-                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500"
+                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-500"
                     style={{ willChange: index < 3 ? 'transform' : 'auto' }} // Only apply will-change to first few letters
                   >
                     {letter}
@@ -202,7 +202,7 @@ export default function Hero() {
                     variants={letterVariants}
                     initial="initial"
                     animate="wave"
-                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500"
+                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-500"
                     style={{ willChange: index < 3 ? 'transform' : 'auto' }} // Only apply will-change to first few letters
                   >
                     {letter}

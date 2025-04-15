@@ -15,7 +15,7 @@ const TechStackMotionCloud = lazy(() => import('./TechStackMotionCloud'));
 const categoryColors = {
   frontend: '#3b82f6', // blue
   backend: '#10b981',  // green
-  language: '#f59e0b', // amber
+  Blockchain: '#f59e0b', // amber
   devops: '#8b5cf6',   // purple
   design: '#ec4899'    // pink
 };
