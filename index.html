@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" class="bg-gray-950" style="background-color: #0a0a23;">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/image.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Varun Chauhan - Professional portfolio showcasing skills, projects, and experience in web development and design." />
+    <meta name="theme-color" content="#0a0a23" />
+    
+    <!-- DNS prefetch and preconnect for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Preload critical fonts to prevent layout shifts -->
+    <!-- Add your actual font files here if using custom fonts -->
+    <!-- <link rel="preload" href="/fonts/your-font.woff2" as="font" type="font/woff2" crossorigin /> -->
+    
+    <!-- Preload critical images -->
+    <link rel="preload" href="/image.png" as="image" type="image/png" />
+    
+    <!-- Preload critical JavaScript -->
+    <link rel="modulepreload" href="/src/main.jsx" />
+    
+    <title>Varun Chauhan - Portfolio</title>
+    <style>
+      html, body, #root {
+        background-color: #0a0a23;
+        margin: 0;
+        padding: 0;
+      }
+      /* Add a simple spinner for initial load before React takes over */
+      .initial-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #0a0a23;
+        z-index: 9999;
+        will-change: opacity;
+      }
+      .initial-loader::after {
+        content: "";
+        width: 50px;
+        height: 50px;
+        border: 4px solid #6366f150;
+        border-top-color: #6366f1;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+        will-change: transform;
+      }
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      /* Performance optimizations for all animated elements */
+      .animated {
+        will-change: transform, opacity;
+      }
+      
+      /* Prevent content layout shifts */
+      img, video {
+        content-visibility: auto;
+      }
+    </style>
+    
+    <!-- Add font-display:swap to prevent render blocking -->
+    <script>
+      // Detect slow connections and disable animations
+      if (navigator.connection && (navigator.connection.saveData || 
+          (navigator.connection.effectiveType && navigator.connection.effectiveType.includes('2g')))) {
+        document.documentElement.classList.add('reduce-motion');
+      }
+      
+      // Critical rendering path optimization
+      document.documentElement.style.backgroundColor = '#0a0a23';
+      document.documentElement.style.scrollBehavior = 'auto';
+    </script>
+  </head>
+  <body class="bg-gray-950" style="background-color: #0a0a23;">
+    <div id="root" class="bg-gray-950" style="background-color: #0a0a23;">
+      <!-- Initial loading state that will be replaced by React -->
+      <div class="initial-loader"></div>
+    </div>
+    
+    <!-- Load main script with high priority but defer non-critical operations -->
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Optimization for image loading -->
+    <script>
+      // Add lazy loading to all images that aren't already handled by React
+      window.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('img:not([loading])');
+        images.forEach(img => {
+          if (!img.hasAttribute('loading') && !img.closest('[data-no-lazy]')) {
+            img.setAttribute('loading', 'lazy');
+          }
+          
+          // Convert to WebP if browser supports it and the image isn't already WebP
+          if ('connection' in navigator && !navigator.connection.saveData && 
+              'createImageBitmap' in window) {
+            // WebP support detection is already handled
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

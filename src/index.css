@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+/* Global dark background to prevent white flash */
+:root {
+  background-color: #0a0a23;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+/* Support for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Additional class-based reduced motion support */
+.reduce-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+body {
+  background-color: #0a0a23;
+  margin: 0;
+  padding: 0;
+  /* Improve overall scrolling performance */
+  overflow-anchor: none;
+}
+
+#root {
+  background-color: #0a0a23;
+}
+
+/* Optimized animations with reduced performance impact */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-text {
+  background-size: 300% 100%;
+  animation: gradient-animation 15s linear infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Apply will-change selectively to elements that are actually animating */
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-both {
+  will-change: transform, opacity;
+}
+
+/* Performance optimization classes */
+.hardware-accelerated {
+  transform: translateZ(0);
+}
+
+/* Reduce expensive CSS effects for better performance */
+.optimized-blur {
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+/* Prevent layout shifts from images */
+img {
+  content-visibility: auto;
+}
+
+/* Hide scrollbar but allow scrolling for cleaner UI */
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
