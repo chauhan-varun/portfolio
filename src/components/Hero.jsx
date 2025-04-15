@@ -25,13 +25,13 @@ const waveVariants = {
 const letterVariants = {
   initial: { y: 0 },
   wave: i => ({
-    y: [0, -8, 0], // Reduced motion range
+    y: [0, -5, 0], // Subtle motion range
     transition: {
-      duration: 2, // Slower animation for better performance
+      duration: 1.8, // Smoother animation
       ease: "easeInOut",
       repeat: Infinity,
       repeatType: "mirror",
-      delay: i * 0.08, // Increased delay between letters
+      delay: i * 0.04, // Subtle delay between letters for more natural wave
     },
   }),
 };
@@ -52,7 +52,12 @@ const scrollIndicatorVariants = {
 };
 
 export default function Hero() {
-  const dynamicText = ['Designer.', 'Developer.', 'Creator.', 'Innovator.'];
+  const dynamicText = [
+    'Web Developer',
+    'Blockchain Developer',
+    'Open Source Contributor',
+    'Smart Contract Engineer',
+  ];
   const textRef = useRef();
   const [typedName, setTypedName] = useState('');
   const [isTypingComplete, setIsTypingComplete] = useState(false);
@@ -173,12 +178,10 @@ export default function Hero() {
                     variants={letterVariants}
                     initial="initial"
                     animate="wave"
-                    className="inline-block"
+                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500"
                     style={{ willChange: index < 3 ? 'transform' : 'auto' }} // Only apply will-change to first few letters
                   >
-                    <span className="bg-gradient-to-r from-blue-800 via-indigo-500 to-cyan-500">
-                      {letter}
-                    </span>
+                    {letter}
                   </motion.span>
                 ))}
               </motion.span>
@@ -199,12 +202,10 @@ export default function Hero() {
                     variants={letterVariants}
                     initial="initial"
                     animate="wave"
-                    className="inline-block"
+                    className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-500 to-cyan-500"
                     style={{ willChange: index < 3 ? 'transform' : 'auto' }} // Only apply will-change to first few letters
                   >
-                    <span className="bg-gradient-to-r from-blue-800 via-indigo-500 to-cyan-500">
-                      {letter}
-                    </span>
+                    {letter}
                   </motion.span>
                 ))}
               </motion.span>
@@ -214,7 +215,7 @@ export default function Hero() {
           )}
         </h1>
         <div className="mt-4 text-xl md:text-3xl font-semibold h-10 flex items-center">
-          <span>I'm a&nbsp;</span>
+          <span>&nbsp;</span>
           <span ref={textRef} className="text-indigo-500 transition-colors duration-500">Designer.</span>
         </div>
         <p className="mt-6 max-w-xl text-center px-4 md:px-0 text-gray-300 text-base md:text-lg">

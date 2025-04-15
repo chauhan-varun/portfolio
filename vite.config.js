@@ -16,15 +16,54 @@ export default defineConfig({
     },
     // Generate chunk size warnings at 500kb
     chunkSizeWarningLimit: 500,
-    // Split chunks more aggressively
+    // Split chunks more aggressively for better code-splitting
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          animations: ['framer-motion'],
-          icons: ['react-icons'],
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
+        // More granular code splitting for better performance
+        manualChunks: (id) => {
+          // React core libraries
+          if (id.includes('node_modules/react/') || 
+              id.includes('node_modules/react-dom/')) {
+            return 'vendor';
+          }
+          
+          // Framer Motion
+          if (id.includes('node_modules/framer-motion')) {
+            return 'animations';
+          }
+          
+          // React Icons - split by icon set to create smaller chunks
+          if (id.includes('node_modules/react-icons')) {
+            if (id.includes('/fa/')) return 'icons-fa';
+            if (id.includes('/si/')) return 'icons-si';
+            if (id.includes('/bi/')) return 'icons-bi';
+            if (id.includes('/fi/')) return 'icons-fi';
+            if (id.includes('/go/')) return 'icons-go';
+            return 'icons';
+          }
+          
+          // Three.js core and related packages - split into smaller chunks
+          if (id.includes('node_modules/three/')) {
+            // Split Three.js into core and extras
+            if (id.includes('/examples/') || id.includes('/addons/')) {
+              return 'three-extras';
+            }
+            return 'three-core';
+          }
+          
+          // React Three Fiber and Drei - split separately
+          if (id.includes('node_modules/@react-three/fiber')) {
+            return 'three-fiber';
+          }
+          
+          if (id.includes('node_modules/@react-three/drei')) {
+            return 'three-drei';
+          }
         },
+        // Improve chunk naming for better caching
+        chunkFileNames: 'assets/[name]-[hash].js',
+        // Generate smaller entry chunks
+        entryFileNames: 'assets/[name]-[hash].js',
       },
     },
   },

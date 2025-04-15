@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
+import { FaMoon, FaSun, FaBars, FaTimes, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const navLinks = [
   { label: 'Home', href: '#' },
@@ -74,7 +74,33 @@ export default memo(function Header({ onToggleTheme, isDark }) {
           ))}
         </ul>
         
-        {/* Mobile Menu Toggle */}
+        {/* Social Links - Only visible on desktop */}
+        <div className="hidden md:flex items-center gap-4">
+          <motion.a
+            href="https://github.com/chauhan-varun"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 dark:text-gray-300 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors duration-300"
+            aria-label="GitHub"
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FaGithub size={20} />
+          </motion.a>
+          <motion.a
+            href="https://www.linkedin.com/in/chauhan-varun/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-600 dark:text-gray-300 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors duration-300"
+            aria-label="LinkedIn"
+            whileHover={{ scale: 1.1, y: -2 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FaLinkedin size={20} />
+          </motion.a>
+        </div>
+        
+        {/* Theme Toggle and Mobile Menu */}
         <div className="flex items-center gap-4">
           <button 
             onClick={onToggleTheme} 
@@ -150,6 +176,39 @@ export default memo(function Header({ onToggleTheme, isDark }) {
                   </a>
                 </motion.li>
               ))}
+              
+              {/* Social links in mobile menu */}
+              <motion.li
+                className="w-full mt-2 pt-2 border-t border-gray-200 dark:border-gray-800"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="flex justify-center space-x-8 py-3">
+                  <motion.a
+                    href="https://github.com/chauhan-varun"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 dark:text-gray-300 hover:text-indigo-500 dark:hover:text-indigo-400"
+                    aria-label="GitHub"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaGithub size={24} />
+                  </motion.a>
+                  <motion.a
+                    href="https://www.linkedin.com/in/chauhan-varun/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 dark:text-gray-300 hover:text-indigo-500 dark:hover:text-indigo-400"
+                    aria-label="LinkedIn"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <FaLinkedin size={24} />
+                  </motion.a>
+                </div>
+              </motion.li>
             </ul>
           </motion.div>
         )}

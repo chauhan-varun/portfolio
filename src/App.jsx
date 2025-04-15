@@ -8,7 +8,7 @@ import { motion, AnimatePresence, LazyMotion, domAnimation } from 'framer-motion
 const Portfolio = lazy(() => import('./components/Portfolio'));
 const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
-const TechStackCloud = lazy(() => import('./components/TechStackCloud'));
+const TechStackCloud = lazy(() => import('./components/TechStackCloudDynamic'));
 const TimelineJourney = lazy(() => import('./components/TimelineJourney'));
 const EasterEggs = lazy(() => import('./components/EasterEggs'));
 
