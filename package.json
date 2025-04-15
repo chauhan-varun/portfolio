@@ -12,8 +12,6 @@
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
     "@react-icons/all-files": "^4.1.0",
-    "@react-three/drei": "^10.0.6",
-    "@react-three/fiber": "^9.1.2",
     "@tailwindcss/vite": "^4.1.4",
     "@tsparticles/react": "^3.0.0",
     "framer-motion": "^12.7.3",
@@ -28,7 +26,6 @@
     "react-use": "^17.6.0",
     "styled-components": "^6.1.17",
     "tailwindcss": "^4.1.4",
-    "three": "^0.175.0",
     "vanilla-tilt": "^1.8.1",
     "yet-another-react-lightbox": "^3.22.0",
     "yup": "^1.6.1"

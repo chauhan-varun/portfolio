@@ -8,8 +8,8 @@ import {
 } from 'react-icons/si';
 import { FaAmazon } from 'react-icons/fa';
 
-// Load the 3D components dynamically to reduce initial bundle size
-const ThreeJSCloud = lazy(() => import('./ThreeJSCloud'));
+// Load the animation component dynamically to reduce initial bundle size
+const TechStackMotionCloud = lazy(() => import('./TechStackMotionCloud'));
 
 // Category colors for glows
 const categoryColors = {
@@ -229,7 +229,7 @@ export default function TechStackCloudDynamic() {
         </motion.div>
       </div>
       
-      {/* Always render tech stack content with conditional rendering for 3D or grid view */}
+      {/* Always render tech stack content with conditional rendering for animation or grid view */}
       {inView && (
         useFallback ? (
           <div className="py-4">
@@ -240,11 +240,11 @@ export default function TechStackCloudDynamic() {
             <div className="h-[400px] md:h-[550px] flex items-center justify-center">
               <div className="flex flex-col items-center">
                 <div className="w-12 h-12 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-                <p className="text-indigo-500 mt-4">Loading 3D View...</p>
+                <p className="text-indigo-500 mt-4">Loading Animation...</p>
               </div>
             </div>
           }>
-            <ThreeJSCloud technologies={technologies} />
+            <TechStackMotionCloud technologies={technologies} />
           </Suspense>
         )
       )}
