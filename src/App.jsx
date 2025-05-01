@@ -197,7 +197,7 @@ function App() {
             >
               <CursorEffect />
               {/* Loading components in sequence with priorities */}
-              <Header onToggleTheme={() => setIsDark((d) => !d)} isDark={isDark} />
+              <Header />
               
               <main>
                 {/* Higher priority components */}

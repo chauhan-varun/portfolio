@@ -1,6 +1,6 @@
 import { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaMoon, FaSun, FaBars, FaTimes, FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaBars, FaTimes, FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const navLinks = [
   { label: 'Home', href: '#' },
@@ -9,7 +9,7 @@ const navLinks = [
 ];
 
 // Wrapped in memo to prevent unnecessary re-renders
-export default memo(function Header({ onToggleTheme, isDark }) {
+export default memo(function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -42,7 +42,7 @@ export default memo(function Header({ onToggleTheme, isDark }) {
   const closeMenu = () => setMobileMenuOpen(false);
 
   return (
-    <header className={`fixed top-0 left-0 w-full z-30 transition-all duration-500 ${scrolled ? 'bg-white/80 dark:bg-gray-900/80 shadow-lg backdrop-blur' : 'bg-transparent'}`}
+    <header className={`fixed top-0 left-0 w-full z-30 transition-all duration-500 ${scrolled ? 'bg-white/40 dark:bg-gray-900/40 shadow-lg backdrop-blur-sm' : 'bg-transparent'}`}
       style={{ willChange: scrolled ? 'transform, opacity' : 'auto' }}
     >
       <nav className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
@@ -100,42 +100,10 @@ export default memo(function Header({ onToggleTheme, isDark }) {
           </motion.a>
         </div>
         
-        {/* Theme Toggle and Mobile Menu */}
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={onToggleTheme} 
-            className="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition-colors duration-300 focus:outline-none"
-            style={{ willChange: 'transform' }}
-          >
-            <AnimatePresence mode="wait" initial={false}>
-              {isDark ? (
-                <motion.span 
-                  key="moon" 
-                  initial={{ rotate: -45, opacity: 0 }} 
-                  animate={{ rotate: 0, opacity: 1 }} 
-                  exit={{ rotate: 45, opacity: 0 }} 
-                  transition={{ duration: 0.3 }}
-                  style={{ willChange: 'transform, opacity' }}
-                >
-                  <FaMoon className="text-indigo-500" />
-                </motion.span>
-              ) : (
-                <motion.span 
-                  key="sun" 
-                  initial={{ rotate: 45, opacity: 0 }} 
-                  animate={{ rotate: 0, opacity: 1 }} 
-                  exit={{ rotate: -45, opacity: 0 }} 
-                  transition={{ duration: 0.3 }}
-                  style={{ willChange: 'transform, opacity' }}
-                >
-                  <FaSun className="text-yellow-400" />
-                </motion.span>
-              )}
-            </AnimatePresence>
-          </button>
-          
+        {/* Mobile Menu Button */}
+        <div className="flex items-center">
           <motion.button 
-            className="md:hidden p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition-colors duration-300 focus:outline-none"
+            className="md:hidden p-2 rounded-full bg-gray-100/80 dark:bg-gray-800/80 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition-colors duration-300 focus:outline-none"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
             style={{ willChange: 'transform' }}
@@ -153,7 +121,7 @@ export default memo(function Header({ onToggleTheme, isDark }) {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.4 }}
-            className="md:hidden bg-white dark:bg-gray-900 shadow-lg"
+            className="md:hidden bg-white/40 dark:bg-gray-900/40 shadow-lg backdrop-blur-sm"
             style={{ willChange: 'opacity, height' }}
           >
             <ul className="flex flex-col items-center py-4">
@@ -169,7 +137,7 @@ export default memo(function Header({ onToggleTheme, isDark }) {
                 >
                   <a 
                     href={link.href} 
-                    className="block w-full text-center py-3 px-4 text-gray-700 dark:text-gray-200 font-semibold hover:bg-indigo-50 dark:hover:bg-indigo-900/30"
+                    className="block w-full text-center py-3 px-4 text-gray-700 dark:text-gray-200 font-semibold hover:bg-indigo-50/60 dark:hover:bg-indigo-900/30"
                     onClick={closeMenu}
                   >
                     {link.label}
@@ -179,7 +147,7 @@ export default memo(function Header({ onToggleTheme, isDark }) {
               
               {/* Social links in mobile menu */}
               <motion.li
-                className="w-full mt-2 pt-2 border-t border-gray-200 dark:border-gray-800"
+                className="w-full mt-2 pt-2 border-t border-gray-200/40 dark:border-gray-800/40"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
