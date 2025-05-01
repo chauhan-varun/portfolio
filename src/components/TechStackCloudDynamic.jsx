@@ -42,38 +42,14 @@ export default function TechStackCloudDynamic() {
     threshold: 0.1,
   });
 
-  // Default to fallback view initially and try using 3D view if possible
+  // Default to flying animation view by setting useFallback to false
   const [useFallback, setUseFallback] = useState(false);
   
   useEffect(() => {
-    // Safely check if user prefers reduced motion
-    const checkReducedMotion = () => {
-      try {
-        return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      } catch (e) {
-        return false;
-      }
-    };
-    
-    // Safely check if device might be low-end
-    const isLowEndDevice = () => {
-      try {
-        const memory = navigator?.deviceMemory || 8; // Default to 8GB if not available
-        const cores = navigator?.hardwareConcurrency || 4; // Default to 4 cores if not available
-        return memory < 4 || cores < 4;
-      } catch (e) {
-        return false;
-      }
-    };
-    
-    // Use a slight delay to ensure the component is mounted
-    const timer = setTimeout(() => {
-      setUseFallback(checkReducedMotion() || isLowEndDevice());
-    }, 100);
-    
-    return () => clearTimeout(timer);
+    // Force animation mode by setting useFallback to false
+    setUseFallback(false);
   }, []);
-  
+
   // Tech stack data with icons, colors and categories
   const technologies = [
     { 

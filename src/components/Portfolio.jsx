@@ -8,20 +8,45 @@ import ParallaxTilt from './ParallaxTilt';
 
 const projects = [
   {
-    title: 'VisionX (AI Image/Video Analysis)',
-    image: '/Screenshot from 2025-04-15 19-37-58.png',
-    tags: ['Web', 'AI', 'UI/UX'],
-    description: 'A powerful AI-powered platform for image and video analysis. Features real-time object detection, OCR, and more. Built with a modern, interactive UI.',
-    link: 'https://vision-x-ipxw.onrender.com/',
-    techStack: ['React', 'AI', 'Firebase']
+    title: 'Dev Electricals Storefront',
+    image: '/Screenshot from 2025-04-15 19-38-28.png',
+    tags: ['Web', 'E-Commerce'],
+    description: 'Customer-facing e-commerce website with smooth browsing, filtering, and checkout. Fully responsive and visually striking.',
+    link: 'https://develectricals.onrender.com/',
+    techStack: ['Mongodb', 'Node', 'Express', 'React', 'Tailwindcss', 'auth0', 'Framer Motion', 'Redux', 'Figma']
   },
   {
-    title: 'VisionX Admin Dashboard',
-    image: '/Screenshot from 2025-04-15 19-38-06.png',
-    tags: ['Web', 'Dashboard'],
-    description: 'Admin dashboard for VisionX with analytics, user management, and real-time monitoring. Sleek, responsive, and highly interactive.',
-    link: 'https://adminvisionx.onrender.com/dashboard',
-    techStack: ['React', 'Node', 'AWS']
+    title: 'Tech Tribe',
+    image: '/tech-tribe-community.png',
+    tags: ['Web', 'Community', 'Social'],
+    description: 'A vibrant tech community platform with forums, event management, and resource sharing. Connect with like-minded tech enthusiasts and share knowledge.',
+    link: 'https://techtribeindia.onrender.com/',
+    techStack: ['React', 'Node', 'Express', 'Mongodb', 'Cloudinary', 'Framer Motion', 'Tailwindcss', 'Figma']
+  },
+  {
+    title: 'Aeris Weather App',
+    image: '/aeris-weather-app.png',
+    tags: ['Web', 'Weather', 'UI/UX'],
+    description: 'A sleek weather application with real-time forecasts, interactive maps, and location tracking. Provides detailed weather information with beautiful visualizations.',
+    link: 'https://aerisapp.onrender.com/',
+    techStack: ['React', 'TanStack Query', 'Typescript', 'Shadcn UI', 'Graph QL']
+  },
+  {
+    title: 'Fizzy Crave',
+    image: '/fizzy-crave-e-commerce-website.png',
+    tags: ['Web', 'E-Commerce', 'UI/UX'],
+    description: 'An elegant e-commerce platform for beverages with smooth animations, intuitive product filtering, and secure checkout process. Fully responsive design.',
+    link: 'https://fizzycrave.onrender.com/',
+    techStack: ['React', 'Node', 'MongoDB', 'Shadcn UI', 'Tailwindcss', 'Paypal SDK']
+  },
+  
+  {
+    title: 'iChat (Real-time Chat App)',
+    image: '/Screenshot from 2025-04-15 19-38-18.png',
+    tags: ['Web', 'Chat', 'Realtime'],
+    description: 'Modern chat app with real-time messaging, emoji reactions, and beautiful animations. Secure and scalable.',
+    link: 'https://ichat-cobn.onrender.com/',
+    techStack: ['React', 'WebRTC', 'Realtime', 'DaizyUI']
   },
   {
     title: 'Ad-Free YouTube',
@@ -29,43 +54,12 @@ const projects = [
     tags: ['Web', 'Entertainment'],
     description: 'A custom YouTube front-end that removes ads for a seamless viewing experience. Fast, clean, and privacy-focused.',
     link: 'https://adfreeyoutube.onrender.com/',
-    techStack: ['Vue', 'Node', 'AWS']
+    techStack: ['React', 'Javascript', 'Youtube-API']
   },
-  {
-    title: 'iChat (Real-time Chat App)',
-    image: '/Screenshot from 2025-04-15 19-38-18.png',
-    tags: ['Web', 'Chat', 'Realtime'],
-    description: 'Modern chat app with real-time messaging, emoji reactions, and beautiful animations. Secure and scalable.',
-    link: 'https://ichat-cobn.onrender.com/',
-    techStack: ['React', 'Firebase', 'Realtime']
-  },
-  {
-    title: 'Dev Electricals Admin',
-    image: '/Screenshot from 2025-04-15 19-38-23.png',
-    tags: ['Web', 'Dashboard', 'E-Commerce'],
-    description: 'Admin panel for an e-commerce platform. Manage products, orders, and analytics with a robust, animated UI.',
-    link: 'https://admindevelectricals.onrender.com/',
-    techStack: ['React', 'Node', 'MongoDB']
-  },
-  {
-    title: 'Dev Electricals Storefront',
-    image: '/Screenshot from 2025-04-15 19-38-28.png',
-    tags: ['Web', 'E-Commerce'],
-    description: 'Customer-facing e-commerce website with smooth browsing, filtering, and checkout. Fully responsive and visually striking.',
-    link: 'https://develectricals.onrender.com/',
-    techStack: ['Next', 'Node', 'AWS']
-  },
-  {
-    title: 'Animated Avatar Login Page',
-    image: '/Screenshot from 2025-04-15 19-38-33.png',
-    tags: ['Web', 'UI/UX', 'Animation'],
-    description: 'A playful, animated login page with interactive avatars and micro-interactions. Great for onboarding experiences.',
-    link: 'https://animated-avatar-login-page.onrender.com/',
-    techStack: ['React', 'GSAP', 'UI']
-  },
+  
 ];
 
-const filterTags = ['All', 'Web', 'UI/UX', 'AI', 'Dashboard', 'E-Commerce', 'Chat', 'Realtime', 'Entertainment', 'Animation'];
+const filterTags = [...new Set(['All', ...projects.flatMap(project => project.tags)])];
 
 export default function Portfolio() {
   const [selectedTag, setSelectedTag] = useState('All');
@@ -160,10 +154,9 @@ export default function Portfolio() {
                 key={project.title}
                 layout
                 initial={{ opacity: 0, y: 60 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 60 }}
                 transition={{ duration: 0.5, delay: idx * 0.07 }}
-                viewport={{ once: true, margin: "-100px" }}
                 className="project-card" // For cursor effect
               >
                 <ParallaxTilt>
